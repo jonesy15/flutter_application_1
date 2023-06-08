@@ -4,6 +4,25 @@ void main() {
   runApp(const MyApp());
 }
 
+class Post {
+  //You are assuring flutter that you will initialize this in your code before its used.
+  late String body;
+  late String author;
+  int likes = 0;
+  bool userLiked = false;
+
+  Post(this.body, this.author);
+
+  void likePost() {
+    userLiked = !userLiked;
+    if (userLiked) {
+      likes += 1;
+    } else {
+      likes -= 1;
+    }
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -27,11 +46,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageWidgetState extends State<MyHomePage> {
-  String text = "";
+  List<Post> posts = [];
 
-  void changeText(String newText) {
+  void newPost(String newText) {
     setState(() {
-      text = newText;
+      // ignore: unnecessary_new
+      var post = new Post(newText, "Neil");
+      posts.add(post);
     });
   }
 
@@ -41,7 +62,14 @@ class MyHomePageWidgetState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('SpaceX'),
       ),
-      body: Column(children: <Widget>[TextInputWidget(changeText), Text(text)]),
+      body: Column(children: <Widget>[
+        //expanded ensures everything within the child users as much as the available space as it can
+        Expanded(
+            child: PostList(
+          listItems: posts,
+        )),
+        TextInputWidget(newPost),
+      ]),
     );
   }
 }
@@ -66,6 +94,7 @@ class TextInputWidgetState extends State<TextInputWidget> {
   }
 
   void onClick() {
+    FocusScope.of(context).unfocus();
     widget.textCallback(controller.text);
     controller.clear();
   }
@@ -83,5 +112,55 @@ class TextInputWidgetState extends State<TextInputWidget> {
               tooltip: "Post Message",
               icon: const Icon(Icons.send),
             )));
+  }
+}
+
+class PostList extends StatefulWidget {
+  final List<Post> listItems;
+  const PostList({super.key, required this.listItems});
+  @override
+  PostListState createState() => PostListState();
+}
+
+class PostListState extends State<PostList> {
+  void Like(Function callback) {
+    setState(() {
+      callback();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: widget.listItems.length,
+      itemBuilder: (context, index) {
+        var post = widget.listItems[index];
+        return Card(
+          child: Row(children: <Widget>[
+            Expanded(
+                child: ListTile(
+              title: Text(post.body),
+              subtitle: Text(post.author),
+            )),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: Text(
+                    post.likes.toString(),
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.thumb_up_rounded),
+                  onPressed: () => Like(post.likePost),
+                  color: post.userLiked ? Colors.red : Colors.black,
+                )
+              ],
+            )
+          ]),
+        );
+      },
+    );
   }
 }
