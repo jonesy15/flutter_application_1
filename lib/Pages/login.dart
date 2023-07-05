@@ -26,16 +26,28 @@ class Body extends StatefulWidget {
 class BodyState extends State<Body> {
   late String newName;
   TextEditingController controller = TextEditingController();
-  void onClick() {
+  void onShipsClick() {
     FocusScope.of(context).unfocus();
     newName = controller.text;
     controller.clear();
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MyHomePage(
-                  name: newName,
-                )));
+        context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+  }
+
+  void onRocketsClick() {
+    FocusScope.of(context).unfocus();
+    newName = controller.text;
+    controller.clear();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+  }
+
+  void onRoadstersClick() {
+    FocusScope.of(context).unfocus();
+    newName = controller.text;
+    controller.clear();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const MyHomePage()));
   }
 
   @override
@@ -46,24 +58,25 @@ class BodyState extends State<Body> {
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  onPressed: onClick,
+                  onPressed: onShipsClick,
                   splashColor: Colors.blueAccent,
                   tooltip: "Ships",
                   icon: const Icon(CustomIcons.ship),
                 ),
                 IconButton(
-                  onPressed: onClick,
+                  onPressed: onRocketsClick,
                   splashColor: Colors.blueAccent,
                   tooltip: "Rockets",
                   icon: const Icon(CustomIcons.rocket),
                 ),
                 IconButton(
-                  onPressed: onClick,
+                  onPressed: onRoadstersClick,
                   splashColor: Colors.blueAccent,
                   tooltip: "Roadsters",
                   icon: const Icon(CustomIcons.car),
@@ -74,12 +87,17 @@ class BodyState extends State<Body> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Text(
-                  'Ships',
+                  '     Ships',
+                  textAlign: TextAlign.center,
                 ),
                 Text(
-                  'Rockets',
+                  '     Rockets',
+                  textAlign: TextAlign.center,
                 ),
-                Text('Roadsters'),
+                Text(
+                  '   Roadsters',
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
           ],
