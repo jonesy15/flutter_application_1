@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Fonts/custom_icons_icons.dart';
 import 'package:flutter_application_1/Pages/myHomePage.dart';
 
 class Login extends StatelessWidget {
@@ -43,19 +44,45 @@ class BodyState extends State<Body> {
       alignment: Alignment.center,
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-              labelText: "Type your name:",
-              border: const OutlineInputBorder(
-                  borderSide: BorderSide(width: 5, color: Colors.black)),
-              prefixIcon: const Icon(Icons.person_rounded),
-              suffixIcon: IconButton(
-                onPressed: onClick,
-                splashColor: Colors.blueAccent,
-                tooltip: "Submit",
-                icon: const Icon(Icons.done_rounded),
-              )),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: onClick,
+                  splashColor: Colors.blueAccent,
+                  tooltip: "Ships",
+                  icon: const Icon(CustomIcons.ship),
+                ),
+                IconButton(
+                  onPressed: onClick,
+                  splashColor: Colors.blueAccent,
+                  tooltip: "Rockets",
+                  icon: const Icon(CustomIcons.rocket),
+                ),
+                IconButton(
+                  onPressed: onClick,
+                  splashColor: Colors.blueAccent,
+                  tooltip: "Roadsters",
+                  icon: const Icon(CustomIcons.car),
+                ),
+              ],
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  'Ships',
+                ),
+                Text(
+                  'Rockets',
+                ),
+                Text('Roadsters'),
+              ],
+            ),
+          ],
         ),
       ),
     );
