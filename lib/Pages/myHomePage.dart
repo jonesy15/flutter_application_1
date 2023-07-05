@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Classes/ships.dart';
 import '../Classes/post.dart';
-import '../Widgets/postList.dart';
-import '../Widgets/textInputWidget.dart';
+import '../Widgets/shipList.dart';
 import '../Services/ShipService.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageWidgetState extends State<MyHomePage> {
-
+  List<Post> posts = [];
   late List<Ship>? ships = [];
 
   @override
@@ -34,40 +33,15 @@ class MyHomePageWidgetState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Space-X Ships'),
+        title: const Text('SpaceX'),
       ),
-      body: ships == null || ships!.isEmpty
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemCount: ships!.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(ships![index].name.toString()),
-                          Text(ships![index].shipClass.toString()),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(ships![index].yearBuilt.toString()),
-                          Text(ships![index].model.toString()),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+      body: Column(children: <Widget>[
+        //expanded ensures everything within the child users as much as the available space as it can
+        Expanded(
+            child: ShipList(
+          listItems: ships,
+        )),
+      ]),
     );
   }
 }
