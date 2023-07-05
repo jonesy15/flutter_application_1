@@ -35,7 +35,11 @@ class MyHomePageWidgetState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('SpaceX'),
       ),
-      body: Column(children: <Widget>[
+      body: ships == null || ships!.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Column(children: <Widget>[
         //expanded ensures everything within the child users as much as the available space as it can
         Expanded(
             child: ShipList(
