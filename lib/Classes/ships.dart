@@ -86,31 +86,31 @@ class Ship {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['last_ais_update'] = this.lastAisUpdate;
-    data['legacy_id'] = this.legacyId;
-    data['model'] = this.model;
-    data['type'] = this.type;
-    data['roles'] = this.roles;
-    data['imo'] = this.imo;
-    data['mmsi'] = this.mmsi;
-    data['abs'] = this.abs;
-    data['class'] = this.shipClass;
-    data['mass_kg'] = this.massKg;
-    data['mass_lbs'] = this.massLbs;
-    data['year_built'] = this.yearBuilt;
-    data['home_port'] = this.homePort;
-    data['status'] = this.status;
-    data['speed_kn'] = this.speedKn;
-    data['course_deg'] = this.courseDeg;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['link'] = this.link;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    data['active'] = this.active;
-    data['launches'] = this.launches;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['last_ais_update'] = lastAisUpdate;
+    data['legacy_id'] = legacyId;
+    data['model'] = model;
+    data['type'] = type;
+    data['roles'] = roles;
+    data['imo'] = imo;
+    data['mmsi'] = mmsi;
+    data['abs'] = abs;
+    data['class'] = shipClass;
+    data['mass_kg'] = massKg;
+    data['mass_lbs'] = massLbs;
+    data['year_built'] = yearBuilt;
+    data['home_port'] = homePort;
+    data['status'] = status;
+    data['speed_kn'] = speedKn;
+    data['course_deg'] = courseDeg;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['link'] = link;
+    data['image'] = image;
+    data['name'] = name;
+    data['active'] = active;
+    data['launches'] = launches;
+    data['id'] = id;
     return data;
   }
 }

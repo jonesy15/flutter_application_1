@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter_application_1/Classes/ships.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,8 +10,8 @@ class ShipService {
       var response = await client.get(uri);
       if (response.statusCode == 200) {
         var json = response.body;
-        List<Ship> _ships = shipsFromJson(json);
-        return _ships;
+        List<Ship> ships = shipsFromJson(json);
+        return ships;
       }
     } catch (e) {
       return null;
