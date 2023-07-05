@@ -7,8 +7,7 @@ import '../Widgets/shipList.dart';
 import '../Services/ShipService.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String name;
-  const MyHomePage({super.key, required this.name});
+  const MyHomePage({super.key});
 
   @override
   MyHomePageWidgetState createState() => MyHomePageWidgetState();
